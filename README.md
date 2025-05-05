@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# To-Do List Dashboard
+
+A comprehensive task management and habit tracking application built with Next.js, TypeScript, and MongoDB.
+
+## Features
+
+- **Task Management**: Create, update, and delete tasks with priorities and categories
+- **Goal Setting**: Set and track personal and professional goals
+- **Habit Tracking**: Monitor daily habits and build consistency
+- **Daily Journal & Gratitude**: Record daily reflections and gratitude entries
+- **Analytics**: Visualize progress and patterns in task completion and habit formation
+- **User Authentication**: Secure user accounts and data isolation
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript, Tailwind CSS
+- **Backend**: Next.js API Routes
+- **Database**: MongoDB with Mongoose
+- **Authentication**: NextAuth.js
+- **Scheduling**: Node-cron for task rollover
+- **UI Components**: Heroicons, Framer Motion
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up environment variables:
+   Create a `.env.local` file with:
+   ```
+   MONGODB_URI=your_mongodb_connection_string
+   NEXTAUTH_SECRET=your_nextauth_secret
+   NEXTAUTH_URL=http://localhost:3000
+   ```
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── api/         # API routes
+│   ├── dashboard/   # Dashboard pages
+│   └── auth/        # Authentication pages
+├── components/      # Reusable components
+├── lib/            # Utility functions
+├── models/         # MongoDB models
+└── types/          # TypeScript types
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features in Detail
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Task Management
+- Priority levels (Low, Medium, High)
+- Categories for organization
+- Due dates and times
+- Status tracking
+- Automatic task rollover at midnight
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Goal Setting
+- Long-term and short-term goals
+- Progress tracking
+- Goal categories
+- Milestone setting
 
-## Learn More
+### Habit Tracking
+- Daily habit checklist
+- Streak counting
+- Habit categories
+- Progress visualization
 
-To learn more about Next.js, take a look at the following resources:
+### Analytics
+- Task completion rates
+- Habit formation progress
+- Goal achievement metrics
+- Time management insights
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.

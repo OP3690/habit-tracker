@@ -2,7 +2,7 @@
 import React from "react";
 import { useState, useEffect, useRef } from 'react';
 import { Squares2X2Icon, TagIcon, AdjustmentsHorizontalIcon, TrophyIcon, ChevronRightIcon, PlusIcon, PencilIcon, TrashIcon, CheckIcon, ArrowDownTrayIcon, XMarkIcon, CheckCircleIcon, ClockIcon, PlayCircleIcon, PauseCircleIcon, XCircleIcon, ExclamationCircleIcon, EyeIcon, EyeSlashIcon, DocumentCheckIcon, DocumentTextIcon, DocumentMagnifyingGlassIcon, ArrowPathIcon, ArrowTrendingUpIcon, ArrowTrendingDownIcon, ArrowUpCircleIcon, ArrowDownCircleIcon, StarIcon, FireIcon, BoltIcon, HeartIcon, GlobeAltIcon, UserGroupIcon, ChatBubbleLeftRightIcon, BellIcon, CalendarIcon, FlagIcon, BookmarkIcon, ShieldCheckIcon, WrenchScrewdriverIcon, LightBulbIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 const DEFAULT_CATEGORIES = ['Work', 'Personal', 'Health', 'Learning'];
 const DEFAULT_PRIORITIES = ['High', 'Medium', 'Low'];
@@ -212,6 +212,7 @@ export default function SettingsPage() {
   );
 
   const router = useRouter();
+  const pathname = usePathname();
 
   const fetchStatusConfigs = () => {
     setLoading(true);
@@ -238,13 +239,9 @@ export default function SettingsPage() {
 
   useEffect(() => {
     fetchStatusConfigs();
-    // Listen for route changes to re-fetch configs
-    const handleRouteChange = () => fetchStatusConfigs();
-    router.events?.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events?.off('routeChangeComplete', handleRouteChange);
-    };
-  }, []);
+    // Re-fetch configs when the route changes
+    // eslint-disable-next-line
+  }, [pathname]);
 
   // To-Do List Configurations logic (same as before)
   const saveSettings = async (newCategories: string[], newPriorities: string[]) => {

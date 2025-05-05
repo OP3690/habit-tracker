@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import ExerciseGoal from '@/models/ExerciseGoal';
 
-export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
+export async function POST(req: NextRequest, context: any) {
   await dbConnect();
-  const { id } = params;
+  const { id } = context.params;
   const { date, completed } = await req.json();
 
   if (!date) {

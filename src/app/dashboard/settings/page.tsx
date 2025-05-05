@@ -223,7 +223,7 @@ export default function SettingsPage() {
         setStatusConfigs(
           (data.statusConfigs || []).map((cfg: any) => ({
             ...cfg,
-            icon: ICON_MAP[cfg.icon] || CheckCircleIcon,
+            icon: ICON_MAP[cfg.icon as keyof typeof ICON_MAP] || CheckCircleIcon,
           }))
         );
         setLoading(false);

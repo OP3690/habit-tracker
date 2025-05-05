@@ -8,7 +8,7 @@ import ExerciseGoal from '@/models/ExerciseGoal';
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  context: any
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -16,7 +16,7 @@ export async function PATCH(
       return NextResponse.json({ error: 'Unauthorized: No user session found.' }, { status: 401 });
     }
 
-    const taskId = params.id;
+    const taskId = context.params.id;
     if (!taskId) {
       return NextResponse.json(
         { error: 'Task ID is required.' },

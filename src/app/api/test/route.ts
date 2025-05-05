@@ -8,6 +8,9 @@ export async function GET() {
     await dbConnect();
     
     // Get list of collections
+    if (!mongoose.connection.db) {
+      throw new Error("Database connection is not established.");
+    }
     const collections = await mongoose.connection.db.listCollections().toArray();
     console.log('Available collections:', collections.map(c => c.name));
     

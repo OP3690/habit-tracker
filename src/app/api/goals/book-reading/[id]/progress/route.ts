@@ -3,7 +3,7 @@ import dbConnect from '@/lib/db';
 import BookReadingGoal from '@/models/BookReadingGoal';
 
 // POST: Add or update a daily progress entry for a book reading goal
-export async function POST(req: NextRequest, context: { params: { id: string } }) {
+export async function POST(req: NextRequest, context: any) {
   await dbConnect();
   const body = await req.json();
   const { date, read, notes } = body;

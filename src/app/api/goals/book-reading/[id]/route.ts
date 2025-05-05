@@ -3,7 +3,7 @@ import dbConnect from '@/lib/db';
 import BookReadingGoal from '@/models/BookReadingGoal';
 
 // PATCH: Update a book reading goal (edit fields or mark as complete)
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, context: any) {
   await dbConnect();
   const body = await req.json();
   const { bookTitle, startDate, endDate, status } = body;
@@ -12,7 +12,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   if (startDate !== undefined) update.startDate = startDate;
   if (endDate !== undefined) update.endDate = endDate;
   if (status !== undefined) update.status = status;
-  const updatedGoal = await BookReadingGoal.findByIdAndUpdate(params.id, update, { new: true });
+  const updatedGoal = await BookReadingGoal.findByIdAndUpdate(context.params.id, update, { new: true });
   if (!updatedGoal) return NextResponse.json({ error: 'Goal not found' }, { status: 404 });
   if (status && ['Completed', 'Done', 'Discarded'].includes(status)) {
     const todayStr = new Date().toISOString().slice(0, 10);
@@ -49,9 +49,9 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 }
 
 // DELETE: Remove a book reading goal
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: any) {
   await dbConnect();
-  const deleted = await BookReadingGoal.findByIdAndDelete(params.id);
+  const deleted = await BookReadingGoal.findByIdAndDelete(context.params.id);
   if (!deleted) return NextResponse.json({ error: 'Goal not found' }, { status: 404 });
   return NextResponse.json({ success: true });
 } 

@@ -805,7 +805,7 @@ export default function SettingsPage() {
     // Convert icon component back to string name
     const configsToSave = configs.map(cfg => ({
       ...cfg,
-      icon: Object.keys(ICON_MAP).find(key => ICON_MAP[key] === cfg.icon) || cfg.icon,
+      icon: (Object.keys(ICON_MAP) as (keyof typeof ICON_MAP)[]).find(key => ICON_MAP[key] === cfg.icon) || cfg.icon,
     }));
     await fetch('/api/status-config', {
       method: 'PUT',
